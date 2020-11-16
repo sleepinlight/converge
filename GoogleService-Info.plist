@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>1077624981050-e1ft77s7u8dpjpc11gen1shn1le78r4j.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.1077624981050-e1ft77s7u8dpjpc11gen1shn1le78r4j</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>1077624981050-gihtldr0phnhne8h6jtv0gtvimn3nddn.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCcherOUZ36W4UjXOmmeHJZaVzwQMDMKBE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>1077624981050</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>org.name.converge</string>
+	<key>PROJECT_ID</key>
+	<string>mindreader-ec661</string>
+	<key>STORAGE_BUCKET</key>
+	<string>mindreader-ec661.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:1077624981050:ios:82ea85b9da56d5d18e9703</string>
+	<key>DATABASE_URL</key>
+	<string>https://mindreader-ec661.firebaseio.com</string>
+</dict>
+</plist>
