@@ -1,35 +1,73 @@
-import { Ionicons } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import * as React from 'react';
+import { Ionicons } from "@expo/vector-icons";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createStackNavigator } from "@react-navigation/stack";
+import * as React from "react";
 
-import Colors from '../constants/Colors';
-import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import Colors from "../constants/Colors";
+import useColorScheme from "../hooks/useColorScheme";
+import { HomeScreen } from "../screens";
+import TabOneScreen from "../screens/TabOneScreen";
+import TabTwoScreen from "../screens/TabTwoScreen";
+import SettingsScreen from "../screens/SettingsScreen";
+import {
+  BottomTabParamList,
+  TabOneParamList,
+  TabTwoParamList,
+  HomeTabParamList,
+  SettingsTabParamList,
+  AddFragmentTabParamList,
+} from "../types";
+import AddFragmentScreen from "../screens/AddFragment";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+export default function BottomTabNavigator(props: any) {
   const colorScheme = useColorScheme();
+  const userData = props.userData;
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
-      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      initialRouteName="Home"
+      tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}
+    >
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Home"
+        children={() => (
+          <HomeScreenNavigator
+            {...props}
+            extraData={userData}
+          ></HomeScreenNavigator>
+        )}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-home" color={color} />
+          ),
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="AddFragment"
+        children={() => (
+          <AddFragmentScreenNavigator
+            {...props}
+            extraData={userData}
+          ></AddFragmentScreenNavigator>
+        )}
         options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-list" color={color} />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Settings"
+        // component={TabSettingsNavigator}
+        children={() => (
+          <SettingsScreenNavigator {...props}></SettingsScreenNavigator>
+        )}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="ios-options" color={color} />
+          ),
         }}
       />
     </BottomTab.Navigator>
@@ -52,7 +90,7 @@ function TabOneNavigator() {
       <TabOneStack.Screen
         name="TabOneScreen"
         component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+        options={{ headerTitle: "Tab One Title" }}
       />
     </TabOneStack.Navigator>
   );
@@ -66,8 +104,54 @@ function TabTwoNavigator() {
       <TabTwoStack.Screen
         name="TabTwoScreen"
         component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+        options={{ headerTitle: "Tab Two Title" }}
       />
     </TabTwoStack.Navigator>
+  );
+}
+
+const HomeScreenStack = createStackNavigator<HomeTabParamList>();
+
+function HomeScreenNavigator(props: any) {
+  const userData = props.extraData;
+  return (
+    <HomeScreenStack.Navigator>
+      <HomeScreenStack.Screen
+        name="TabHomeScreen"
+        // component={HomeScreen}
+        children={() => <HomeScreen {...props} />}
+        options={{ headerTitle: "Home Title" }}
+      />
+    </HomeScreenStack.Navigator>
+  );
+}
+
+const SettingsScreenStack = createStackNavigator<SettingsTabParamList>();
+
+function SettingsScreenNavigator(props: any) {
+  return (
+    <SettingsScreenStack.Navigator>
+      <SettingsScreenStack.Screen
+        name="TabSettingsScreen"
+        // component={HomeScreen}
+        children={() => <SettingsScreen {...props} />}
+        options={{ headerTitle: "Settings Title" }}
+      />
+    </SettingsScreenStack.Navigator>
+  );
+}
+
+const AddFragmentScreenStack = createStackNavigator<AddFragmentTabParamList>();
+
+function AddFragmentScreenNavigator(props: any) {
+  const userData = props.extraData;
+  return (
+    <AddFragmentScreenStack.Navigator>
+      <AddFragmentScreenStack.Screen
+        name="TabAddFragmentScreen"
+        children={() => <AddFragmentScreen {...props} />}
+        options={{ headerTitle: "Add Fragment" }}
+      />
+    </AddFragmentScreenStack.Navigator>
   );
 }
